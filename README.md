@@ -4,7 +4,7 @@ Aplicação interativa desenvolvida com [Streamlit](https://streamlit.io/) para 
 
 ---
 
-## 🚀 O que faz esta app?
+## O que faz esta app?
 
 - Apresenta **25 perguntas** com opções de resposta: Sim, Não, Depende e Não sei.
 - Calcula a tua posição nos eixos **económico** e **social**.
@@ -13,23 +13,22 @@ Aplicação interativa desenvolvida com [Streamlit](https://streamlit.io/) para 
 
 ---
 
-## 📸 Exemplo de visualização
-
-> (Adiciona aqui um screenshot ou o link direto para a app, se já tiveres feito o deploy)
+## Estrutura do projeto
+| Ficheiro       | Descrição                                    |
+| -------------- | -------------------------------------------- |
+| `app.py`       | Código principal da aplicação                |
+| `partidos.csv` | Coordenadas e posições dos partidos por tema |
+| `README.md`    | Este ficheiro                                |
+| `.gitignore`   | Ficheiros a ignorar no Git                   |
+| `LICENSE`      | Licença MIT                                  |
 
 ---
 
-📦 Estrutura do projeto
-Ficheiro	Descrição
-app.py	Código principal da aplicação
-partidos.csv	Coordenadas e posições dos partidos por tema
-README.md	Este ficheiro
-.gitignore	Ficheiros a ignorar no Git
-LICENSE	Licença MIT
-
-📄 Licença
+## Licença
 Este projeto está licenciado sob a MIT License.
 
-✍️ Autor
+---
+
+## Autor
 Desenvolvido por Pedro com o apoio do ChatGPT (OpenAI).
 Este projeto é open source — sugestões e contributos são bem-vindos!
