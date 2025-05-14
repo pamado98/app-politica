@@ -1,4 +1,4 @@
-# 🧭 app-política
+# Eleições Legislativas Portuguesas de 2025
 
 Aplicação interativa desenvolvida com [Streamlit](https://streamlit.io/) para ajudar os cidadãos a descobrirem a sua posição política com base em 25 perguntas sobre temas-chave da sociedade portuguesa.
 
@@ -19,12 +19,17 @@ Aplicação interativa desenvolvida com [Streamlit](https://streamlit.io/) para 
 
 ---
 
-## 🛠️ Como usar localmente
+📦 Estrutura do projeto
+Ficheiro	Descrição
+app.py	Código principal da aplicação
+partidos.csv	Coordenadas e posições dos partidos por tema
+README.md	Este ficheiro
+.gitignore	Ficheiros a ignorar no Git
+LICENSE	Licença MIT
 
-```bash
-git clone https://github.com/pamado98/app-politica.git
-cd app-politica
-pip install streamlit pandas matplotlib
-streamlit run app.py
-# app-politica
-App interativa feita em Streamlit que ajuda a descobrir a tua posição política através de 25 perguntas. No final, apresenta um gráfico tipo bússola política com a tua posição e uma tabela comparativa com as propostas dos principais partidos nas legislativas.
+📄 Licença
+Este projeto está licenciado sob a MIT License.
+
+✍️ Autor
+Desenvolvido por Pedro com o apoio do ChatGPT (OpenAI).
+Este projeto é open source — sugestões e contributos são bem-vindos!
