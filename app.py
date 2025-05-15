@@ -110,13 +110,22 @@ if st.button("Ver resultado"):
     fig, ax = plt.subplots(figsize=(6,6))
     ax.scatter(eixo_econ, eixo_soc, color="black", s=120)
     ax.text(eixo_econ + 0.2, eixo_soc, "Estás aqui!", fontsize=9)
+
+# Pré-carregar logótipos uma única vez
+logo_cache = {}
+
+for partido in df['partido']:
+    partido_id = partido.lower().replace(" ", "_").replace("(", "").replace(")", "").replace("+", "").replace("!", "").replace(".", "").replace("-", "").replace("/", "")
+    logo_path = os.path.join("logos", f"{partido_id}.png")
+    if os.path.exists(logo_path):
+        logo_cache[partido] = plt.imread(logo_path)
    
 for _, row in df.iterrows():
     partido_id = row['partido'].lower().replace(" ", "_").replace("(", "").replace(")", "").replace("+", "").replace("!", "").replace(".", "").replace("-", "").replace("/", "")
     logo_path = os.path.join("logos", f"{partido_id}.png")
 
     if os.path.exists(logo_path):
-        img = plt.imread(logo_path)
+        img = logo_cache.get(row['partido'])
         imagebox = OffsetImage(img, zoom=0.12)
         ab = AnnotationBbox(imagebox, (row['econ'], row['soc']), frameon=False)
         ax.add_artist(ab)
