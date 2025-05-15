@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -50,7 +49,7 @@ No final, um gráfico do tipo *bússola política* vai mostrar-te a tua posiçã
 """)
     if st.button("Vamos começar!"):
         st.session_state.tema_index += 1
-        st.experimental_rerun()
+        st.rerun()
     st.stop()
 
 # Mostrar perguntas do tema atual
@@ -63,15 +62,9 @@ if st.session_state.tema_index < len(temas):
         resposta = st.radio(row["pergunta"], ["Sim", "Não", "Depende", "Não sei"], key=row["pergunta"])
         st.session_state.respostas.append((resposta, row["eixo"], row["peso"]))
 
-    # Botão para avançar
-    if st.session_state.tema_index < len(temas) - 1:
-        if st.button(f"Avançar para {temas[st.session_state.tema_index + 1]}"):
-            st.session_state.tema_index += 1
-            st.experimental_rerun()
-    else:
-        if st.button("Ver Resultados"):
-            st.session_state.tema_index += 1
-            st.experimental_rerun()
+    if st.button(f"Avançar para {temas[st.session_state.tema_index + 1]}" if st.session_state.tema_index < len(temas) - 1 else "Ver Resultados"):
+        st.session_state.tema_index += 1
+        st.rerun()
 
 # Página final com gráfico
 if st.session_state.tema_index >= len(temas):
@@ -92,6 +85,7 @@ if st.session_state.tema_index >= len(temas):
 
     ax.scatter(eixo_econ, eixo_soc, color="black", s=120)
     ax.text(eixo_econ + 0.2, eixo_soc, "Estás aqui!", fontsize=9, color="black")
+
     st.pyplot(fig)
 
     st.markdown("### Mantém-te a par! Vê os Programas Eleitorais de cada partido abaixo.")
