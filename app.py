@@ -41,8 +41,8 @@ if 'started' not in st.session_state:
 st.markdown("""
     <style>
     .stButton > button {
-        background-color: #007a33;
-        color: white;
+        background-color: #007a33 !important;
+        color: white !important;
         border: none;
         padding: 0.5em 1.2em;
         font-size: 16px;
@@ -50,8 +50,8 @@ st.markdown("""
     }
 
     .stButton > button:hover {
-        background-color: #005924;
-        color: white;
+        background-color: #005924 !important;
+        color: white !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -119,17 +119,8 @@ if st.button("Ver resultado"):
     elif eixo_econ >= 2: pos = "Centro-Direita"
 
     df = pd.read_csv("partidos.csv")
-    df['dist'] = np.sqrt((df['econ'] - eixo_econ)**2 + (df['soc'] - eixo_soc)**2)
-    partido_mais_proximo = df.loc[df['dist'].idxmin(), 'partido']
 
-    st.write(f"Posição política: {pos}")
-    st.write(f"Partido mais próximo: {partido_mais_proximo}")
-
-    fig, ax = plt.subplots(figsize=(6,6))
-    ax.scatter(eixo_econ, eixo_soc, color="black", s=120)
-    ax.text(eixo_econ + 0.2, eixo_soc, "Estás aqui!", fontsize=9)
-
-# Pré-carregar logótipos uma única vez
+    # Pré-carregar logótipos uma única vez
 logo_cache = {}
 
 for partido in df['partido']:
@@ -151,6 +142,16 @@ for _, row in df.iterrows():
         ax.scatter(row['econ'], row['soc'], s=80)
         ax.text(row['econ'] + 0.2, row['soc'], row['partido'], fontsize=8)
 
+    
+    df['dist'] = np.sqrt((df['econ'] - eixo_econ)**2 + (df['soc'] - eixo_soc)**2)
+    partido_mais_proximo = df.loc[df['dist'].idxmin(), 'partido']
+
+    st.write(f"Posição política: {pos}")
+    st.write(f"Partido mais próximo: {partido_mais_proximo}")
+
+    fig, ax = plt.subplots(figsize=(6,6))
+    ax.scatter(eixo_econ, eixo_soc, color="black", s=120)
+    ax.text(eixo_econ + 0.2, eixo_soc, "Estás aqui!", fontsize=9)
 
     ax.axhline(0, color='gray', linestyle='--')
     ax.axvline(0, color='gray', linestyle='--')
