@@ -1,9 +1,9 @@
-partido,econ,soc,saude,habitacao,impostos,ambiente,imigracao
-PS,-3,3,Reforçar SNS,Habitação pública + incentivo,IRC PME 15%,Transição equilibrada,Via legal com quotas
-AD (PSD+CDS),3,1,SNS + privados,Benefícios fiscais,Baixar IRS,Transição cautelosa,Integração com controlo
-IL,7,4,Conta privada saúde,Liberalização,Baixos impostos,Fim subsídios verdes,Sistema por pontos
-Chega,6,-4,Privatizar SNS,Despejos rápidos,Corte IVA energia,Nuclear + gás,Restrições duras
-BE,-7,6,SNS 100%,Tecto rendas,Salário mínimo ↑,100% renovável,Residência 48h
-PCP,-8,4,SNS público total,Controlar rendas,Taxar lucros,Nacionalizações,Regularização total
-Livre,-6,6,SNS público,Cooperativas arrendamento,Imposto clima,Voos taxados,Corrredores humanitários
-PAN,-2,5,Uma Só Saúde,Reabilitar social,+5%/ano,Ambiente urbano,Visto climático
+partido,econ,soc,link
+PS,-3,3,https://ps.pt/programa
+AD (PSD+CDS),3,1,https://psd.pt/programa
+IL,7,4,https://iniciativaliberal.pt/programa
+Chega,6,-4,https://partidochega.pt/programa
+BE,-7,6,https://bloco.org/programa
+PCP,-8,4,https://cdu.pt/programa
+Livre,-6,6,https://partidolivre.pt/programa
+PAN,-2,5,https://pan.com/programa
