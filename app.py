@@ -3,6 +3,30 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+import os
+
+st.markdown("""
+    <style>
+    .stApp {
+        background-color: #ffffff;
+    }
+    h1, h2, h3 {
+        color: #007a33;
+    }
+    .stButton>button {
+        background-color: #da291c;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 0.5em 1em;
+    }
+    .stButton>button:hover {
+        background-color: #a62016;
+        color: white;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 if 'started' not in st.session_state:
     st.title("Bússola Política")
@@ -87,8 +111,19 @@ if st.button("Ver resultado"):
     ax.scatter(eixo_econ, eixo_soc, color="black", s=120)
     ax.text(eixo_econ + 0.2, eixo_soc, "Estás aqui!", fontsize=9)
     for _, row in df.iterrows():
+    partido_id = row['partido'].lower().replace(" ", "_").replace("(", "").replace(")", "").replace("+", "").replace("!", "").replace(".", "").replace("-", "").replace("/", "")
+    logo_path = os.path.join("logos", f"{partido_id}.png")
+
+        if os.path.exists(logo_path):
+        img = plt.imread(logo_path)
+        imagebox = OffsetImage(img, zoom=0.12)
+        ab = AnnotationBbox(imagebox, (row['econ'], row['soc']), frameon=False)
+        ax.add_artist(ab)
+        else:
         ax.scatter(row['econ'], row['soc'], s=80)
         ax.text(row['econ'] + 0.2, row['soc'], row['partido'], fontsize=8)
+
+
     ax.axhline(0, color='gray', linestyle='--')
     ax.axvline(0, color='gray', linestyle='--')
     ax.set_xlabel("Economia (↔)")
