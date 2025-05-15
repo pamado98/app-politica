@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -6,7 +5,8 @@ import matplotlib.pyplot as plt
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import os
 
-# Estilo personalizado
+st.set_page_config(page_title="Bússola Política", layout="centered")
+
 st.markdown("""
     <style>
     .stApp {
@@ -15,22 +15,20 @@ st.markdown("""
     h1, h2, h3 {
         color: #007a33;
     }
-    .stButton > button {
+    .stButton>button {
         background-color: #007a33 !important;
         color: white !important;
         border: none;
-        padding: 0.5em 1.2em;
-        font-size: 16px;
         border-radius: 6px;
+        padding: 0.5em 1em;
+        font-size: 16px;
     }
-    .stButton > button:hover {
+    .stButton>button:hover {
         background-color: #005924 !important;
-        color: white !important;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Mensagem inicial
 if 'started' not in st.session_state:
     st.title("Bússola Política")
     st.write("""
@@ -41,10 +39,8 @@ if 'started' not in st.session_state:
         st.session_state.started = True
     st.stop()
 
-# Mapeamento de respostas
 MAPA_RESPOSTA = {"Sim": 1, "Não": -1, "Depende": 0.5, "Não sei": 0}
 
-# Perguntas organizadas por tema
 PERGUNTAS = {
     "Economia e Estado Social": [
         ("O Estado deve ser o principal responsável pelos serviços essenciais como saúde e educação?", "econ", -1),
@@ -102,42 +98,18 @@ if st.button("Ver resultado"):
     df['dist'] = np.sqrt((df['econ'] - eixo_econ)**2 + (df['soc'] - eixo_soc)**2)
     partido_mais_proximo = df.loc[df['dist'].idxmin(), 'partido']
 
-    pos = "Centro"
-    if eixo_econ < -4: pos = "Esquerda"
-    elif eixo_econ > 4: pos = "Direita"
-    elif eixo_econ <= -2: pos = "Centro-Esquerda"
-    elif eixo_econ >= 2: pos = "Centro-Direita"
-
     st.subheader("Resultado")
-    st.markdown(f"**Posição política:** {pos}")
-    st.markdown(f"**Partido mais próximo:** {partido_mais_proximo}")
+    st.write(f"**Posição política:** {('Esquerda' if eixo_econ < -4 else 'Direita' if eixo_econ > 4 else 'Centro-Esquerda' if eixo_econ <= -2 else 'Centro-Direita' if eixo_econ >= 2 else 'Centro')}")
+    st.write(f"**Partido mais próximo:** {partido_mais_proximo}")
 
-    # Carregar logótipos
-    logo_cache = {}
-    for partido in df['partido']:
-        partido_id = partido.lower().replace(" ", "_").replace("(", "").replace(")", "").replace("+", "").replace("!", "").replace(".", "").replace("-", "").replace("/", "")
-        logo_path = os.path.join("logos", f"{partido_id}.png")
-        if os.path.exists(logo_path):
-            logo_cache[partido] = plt.imread(logo_path)
-
-    # Gráfico
     fig, ax = plt.subplots(figsize=(6,6))
     ax.scatter(eixo_econ, eixo_soc, color="black", s=120)
     ax.text(eixo_econ + 0.2, eixo_soc, "Estás aqui!", fontsize=9)
 
-for _, row in df.iterrows():
-    econ, soc = row['econ'], row['soc']
-    logo_path = os.path.join("logos", row['logo'])
-
-    if os.path.exists(logo_path):
-        img = plt.imread(logo_path)
-        imagebox = OffsetImage(img, zoom=0.1)
-        ab = AnnotationBbox(imagebox, (econ, soc), frameon=False)
-        ax.add_artist(ab)
-    else:
+    for _, row in df.iterrows():
+        econ, soc = row['econ'], row['soc']
         ax.scatter(econ, soc, s=80)
         ax.text(econ + 0.2, soc, row['partido'], fontsize=8)
-
 
     ax.axhline(0, color='gray', linestyle='--')
     ax.axvline(0, color='gray', linestyle='--')
@@ -145,6 +117,7 @@ for _, row in df.iterrows():
     ax.set_ylabel("Liberdades Individuais (↕)")
     ax.set_title("Bússola Política")
     st.pyplot(fig)
+
     st.subheader("Consulta os programas dos partidos")
-for _, row in df.iterrows():
-    st.markdown(f"[{row['partido']}]({row['link']})")
+    for _, row in df.iterrows():
+        st.markdown(f"[{row['partido']}]({row['link']})")
