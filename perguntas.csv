@@ -1,0 +1,31 @@
+tema,pergunta,eixo,peso
+Economia e Fiscalidade,O salário mínimo deve continuar a subir por decisão política?,econ,-1
+Economia e Fiscalidade,Devem ser reduzidos os impostos sobre os rendimentos do trabalho?,econ,1
+Economia e Fiscalidade,O Estado deve ter um papel central na regulação da economia?,econ,-1
+Saúde,O SNS deve continuar a ser maioritariamente público?,econ,-1
+Saúde,Os profissionais de saúde devem ter incentivos para trabalhar em zonas carenciadas?,econ,-1
+Saúde,O Estado deve contratar serviços privados para reduzir listas de espera?,econ,1
+Educação,A frequência no ensino superior público deve ser gratuita?,econ,-1
+Educação,Deve haver mais liberdade na escolha do projeto pedagógico das escolas?,soc,1
+Educação,A disciplina de cidadania deve ser obrigatória?,soc,-1
+Habitação,O Estado deve construir mais habitação pública?,econ,-1
+Habitação,Devem ser definidos limites máximos ao valor das rendas em zonas urbanas?,econ,-1
+Habitação,O alojamento local deve ser restringido em zonas residenciais?,soc,1
+Justiça e Segurança,Devem existir penas mais duras para crimes violentos?,soc,-1
+Justiça e Segurança,A polícia deve ter mais meios humanos e materiais?,soc,-1
+Justiça e Segurança,Deve haver maior controlo externo sobre as forças de segurança?,soc,1
+Ambiente,Devem ser implementadas medidas ambientais mesmo que aumentem os custos?,econ,-1
+Ambiente,Portugal deve antecipar a neutralidade carbónica antes de 2050?,econ,-1
+Ambiente,As empresas poluentes devem pagar mais impostos?,econ,-1
+Direitos e Sociedade,A canábis deve ser legalizada para uso recreativo?,soc,1
+Direitos e Sociedade,O Estado deve apoiar financeiramente associações LGBTQIA+?,soc,1
+Direitos e Sociedade,A eutanásia deve ser legalizada?,soc,1
+Imigração,Portugal deve aceitar mais imigrantes para combater a falta de mão de obra?,soc,1
+Imigração,Deve haver maior controlo na concessão de vistos de residência?,soc,-1
+Imigração,O acesso à nacionalidade portuguesa deve ser facilitado?,soc,1
+Europa e Política Externa,Portugal deve integrar mais decisões comuns da União Europeia?,econ,1
+Europa e Política Externa,A política externa deve alinhar-se com as posições da UE e da NATO?,soc,1
+Europa e Política Externa,Portugal deve investir mais em ajuda ao desenvolvimento?,econ,-1
+Sistema Político,Deve haver menos deputados na Assembleia da República?,soc,1
+Sistema Político,O voto obrigatório deve ser implementado em Portugal?,soc,-1
+Sistema Político,A presença de partidos pequenos no parlamento deve ser dificultada?,soc,-1

@@ -1,9 +1,9 @@
-partido,sigla,partido_completo,logo,econ,soc,link
-Partido Socialista,PS,Partido Socialista,ps,-2,3,https://ps.pt
-AD (PSD+CDS),AD,Aliança Democrática,ad,3,1,https://psd.pt
-Iniciativa Liberal,IL,Iniciativa Liberal,il,6,4,https://liberal.pt
-Chega,Chega,Chega,chega,5,2,https://partidochega.pt
-Bloco de Esquerda,BE,Bloco de Esquerda,be,-6,6,https://bloco.org
-CDU (PCP-PEV),CDU,Coligação Democrática Unitária,cdu,-7,4,https://cdu.pt
-Livre,Livre,Livre,livre,-3,6,https://partidolivre.pt
-PAN,PAN,Pessoas-Animais-Natureza,pan,-2,5,https://pan.com.pt
+sigla,partido_completo,link,econ,soc
+PS,PS - Partido Socialista,INSERIR LINK AQUI,-2.5,3
+AD,AD (PSD+CDS) - Aliança Democrática,INSERIR LINK AQUI,4.0,1
+IL,IL - Iniciativa Liberal,INSERIR LINK AQUI,6.0,4
+Chega,Chega,INSERIR LINK AQUI,5.0,2
+BE,BE - Bloco de Esquerda,INSERIR LINK AQUI,-7.0,6
+CDU,CDU (PCP-PEV) - Coligação Democrática Unitária,INSERIR LINK AQUI,-7.5,4
+Livre,Livre,INSERIR LINK AQUI,-5.0,6
+PAN,PAN,INSERIR LINK AQUI,-3.0,5
