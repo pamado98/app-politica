@@ -146,5 +146,5 @@ for _, row in df.iterrows():
     ax.set_title("Bússola Política")
     st.pyplot(fig)
     st.subheader("Consulta os programas dos partidos")
-    for _, row in df.iterrows():
+for _, row in df.iterrows():
     st.markdown(f"[{row['partido']}]({row['link']})")
