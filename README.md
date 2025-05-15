@@ -1,34 +1,49 @@
-# Eleições Legislativas Portuguesas de 2025
+# Bússola Política – Legislativas 2025
 
-Aplicação interativa desenvolvida com [Streamlit](https://streamlit.io/) para ajudar os cidadãos a descobrirem a sua posição política com base em 25 perguntas sobre temas-chave da sociedade portuguesa.
+Esta aplicação interativa foi criada com o objetivo de ajudar os cidadãos a refletirem sobre as suas posições políticas antes das eleições legislativas de 2025 em Portugal.
+
+## 🧭 Como funciona?
+
+Através de 30 perguntas simples, organizadas por tema (como Educação, Habitação, Justiça, etc.), a aplicação calcula a tua posição numa bússola política com dois eixos:
+
+- **Económico**: Esquerda ↔ Direita
+- **Liberdades Individuais**: Autoritário ↕ Libertário
+
+No final, é gerado um gráfico com a tua posição e a dos principais partidos portugueses. Também é possível consultar os programas eleitorais dos partidos diretamente a partir da aplicação.
+
+## 📌 Importante
+
+Este projeto **não pretende indicar o “voto certo”** nem substituir a análise crítica. Os resultados são meramente indicativos e baseiam-se nas posições expressas nos programas eleitorais dos partidos.
+
+Recomenda-se a leitura direta dos programas e o acompanhamento do debate político.
+
+## 📂 Estrutura dos ficheiros
+
+- `app.py` – Aplicação principal Streamlit
+- `partidos.csv` – Coordenadas ideológicas e links para os programas
+- `perguntas.csv` – Perguntas por tema e respetiva orientação política
+- `.streamlit/config.toml` – Personalização de cores da interface
+
+## 💡 Tecnologias utilizadas
+
+- [Streamlit](https://streamlit.io/)
+- Python 3.12
+- Pandas, Matplotlib, Numpy
+
+## 🗳️ Dados utilizados
+
+Todos os programas eleitorais de 2025 dos seguintes partidos foram lidos para construir a lógica desta aplicação:
+
+- PS – Partido Socialista  
+- AD (PSD+CDS) – Aliança Democrática  
+- IL – Iniciativa Liberal  
+- Chega  
+- BE – Bloco de Esquerda  
+- CDU (PCP-PEV) – Coligação Democrática Unitária  
+- Livre  
+- PAN – Pessoas-Animais-Natureza  
 
 ---
 
-## O que faz esta app?
-
-- Apresenta **25 perguntas** com opções de resposta: Sim, Não, Depende e Não sei.
-- Calcula a tua posição nos eixos **económico** e **social**.
-- Mostra-te num **gráfico tipo bússola política**, ao lado dos principais partidos portugueses.
-- Exibe uma **tabela comparativa** com as propostas dos partidos em áreas como saúde, habitação, impostos, ambiente e imigração.
-
----
-
-## Estrutura do projeto
-| Ficheiro       | Descrição                                    |
-| -------------- | -------------------------------------------- |
-| `app.py`       | Código principal da aplicação                |
-| `partidos.csv` | Coordenadas e posições dos partidos por tema |
-| `README.md`    | Este ficheiro                                |
-| `.gitignore`   | Ficheiros a ignorar no Git                   |
-| `LICENSE`      | Licença MIT                                  |
-
----
-
-## Licença
-Este projeto está licenciado sob a MIT License.
-
----
-
-## Autor
-Desenvolvido por Pedro com o apoio do ChatGPT (OpenAI).
-Este projeto é open source — sugestões e contributos são bem-vindos!
+Criado por [Pedro](https://github.com/pamado98)  
+Projeto independente, sem afiliação a qualquer força política.
