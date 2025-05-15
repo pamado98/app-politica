@@ -48,6 +48,7 @@ Através de um conjunto de perguntas divididas por temas, poderás avaliar a tua
 No final, um gráfico do tipo *bússola política* vai mostrar-te a tua posição ideológica, com base nas tuas respostas.
 """)
     if st.button("Vamos começar!"):
+        st.session_state.tema_index += 1
         st.rerun()
     st.stop()
 
@@ -119,4 +120,3 @@ if st.session_state.tema_index >= len(temas):
 
     if st.button("Vê aqui a tua tendência política em cada um dos temas!"):
         st.info("Funcionalidade em desenvolvimento: comparação por tema.")
-        
