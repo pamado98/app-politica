@@ -20,22 +20,40 @@ PERGUNTAS = {
     "Economia e Estado Social": [
         ("O Estado deve ser o principal responsável pelos serviços essenciais como saúde e educação?", "econ", -1),
         ("O salário mínimo deve continuar a subir por decisão política?", "econ", -1),
-        ("Deve haver impostos mais altos para quem ganha mais?", "econ", -1)
+        ("Deve haver impostos mais altos para quem ganha mais?", "econ", -1),
+        ("O setor privado deve ter mais liberdade para negociar contratos de trabalho?", "econ", 1),
+        ("Devem existir benefícios fiscais para empresas que criem emprego em Portugal?", "econ", 1)
     ],
     "Habitação": [
         ("O Estado deve construir mais habitação pública para arrendamento acessível?", "econ", -1),
         ("Devem existir limites máximos às rendas em zonas de pressão?", "econ", -1),
-        ("O alojamento local deve ser restringido em zonas residenciais?", "soc", 1)
+        ("O alojamento local deve ser restringido em zonas residenciais?", "soc", 1),
+        ("Devem ser atribuídos apoios diretos aos jovens para compra de casa?", "econ", -1)
     ],
     "Educação e Saúde": [
         ("O ensino superior público deve ser gratuito para todos?", "econ", -1),
         ("O SNS deve colaborar com privados para reduzir listas de espera?", "econ", 1),
-        ("A disciplina de cidadania deve ser obrigatória nas escolas públicas?", "soc", -1)
+        ("A disciplina de cidadania deve ser obrigatória nas escolas públicas?", "soc", -1),
+        ("Os médicos estrangeiros devem poder exercer mais facilmente em Portugal?", "soc", 1)
     ],
     "Sociedade e Justiça": [
         ("A canábis deve ser legalizada para uso recreativo?", "soc", 1),
         ("A eutanásia deve ser legalizada?", "soc", 1),
-        ("Devem existir penas mais duras para crimes de corrupção?", "soc", -1)
+        ("Devem existir penas mais duras para crimes de corrupção?", "soc", -1),
+        ("A polícia deve ter mais meios para atuar em zonas problemáticas?", "soc", -1)
+    ],
+    "Ambiente e Transportes": [
+        ("Devem ser implementadas medidas ambientais mesmo que aumentem os custos para os cidadãos?", "econ", -1),
+        ("O investimento em transportes públicos deve ser prioritário?", "econ", -1),
+        ("As empresas poluentes devem pagar impostos mais altos?", "econ", -1)
+    ],
+    "Imigração e Europa": [
+        ("Portugal deve aceitar mais imigrantes para combater a escassez de mão de obra?", "soc", 1),
+        ("A União Europeia deve ter mais influência nas decisões políticas nacionais?", "econ", 1)
+    ],
+    "Sistema Político": [
+        ("Deve haver menos deputados na Assembleia da República?", "soc", 1),
+        ("O voto obrigatório deve ser implementado?", "soc", -1)
     ]
 }
 
