@@ -125,16 +125,19 @@ if st.button("Ver resultado"):
     ax.scatter(eixo_econ, eixo_soc, color="black", s=120)
     ax.text(eixo_econ + 0.2, eixo_soc, "Estás aqui!", fontsize=9)
 
-    for _, row in df.iterrows():
-        econ, soc = row['econ'], row['soc']
-        if row['partido'] in logo_cache:
-            img = logo_cache[row['partido']]
-            imagebox = OffsetImage(img, zoom=0.1)
-            ab = AnnotationBbox(imagebox, (econ, soc), frameon=False)
-            ax.add_artist(ab)
-        else:
-            ax.scatter(econ, soc, s=80)
-            ax.text(econ + 0.2, soc, row['partido'], fontsize=8)
+for _, row in df.iterrows():
+    econ, soc = row['econ'], row['soc']
+    logo_path = os.path.join("logos", row['logo'])
+
+    if os.path.exists(logo_path):
+        img = plt.imread(logo_path)
+        imagebox = OffsetImage(img, zoom=0.1)
+        ab = AnnotationBbox(imagebox, (econ, soc), frameon=False)
+        ax.add_artist(ab)
+    else:
+        ax.scatter(econ, soc, s=80)
+        ax.text(econ + 0.2, soc, row['partido'], fontsize=8)
+
 
     ax.axhline(0, color='gray', linestyle='--')
     ax.axvline(0, color='gray', linestyle='--')
@@ -142,7 +145,6 @@ if st.button("Ver resultado"):
     ax.set_ylabel("Liberdades Individuais (↕)")
     ax.set_title("Bússola Política")
     st.pyplot(fig)
-
     st.subheader("Consulta os programas dos partidos")
     for _, row in df.iterrows():
-        st.markdown(f"[{row['partido']}]({row['link']})")
+    st.markdown(f"[{row['partido']}]({row['link']})")
