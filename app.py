@@ -34,9 +34,27 @@ if 'started' not in st.session_state:
     Esta aplicação é uma ferramenta representativa. Serve como ponto de partida para refletires sobre as tuas posições políticas antes das eleições legislativas de 18 de março. 
     Com base nas tuas respostas, será apresentada uma aproximação à ideologia dos partidos.
     """)
-    if st.button("Começar"):
+    if st.button("Vamos a isso!"):
         st.session_state.started = True
     st.stop()
+
+st.markdown("""
+    <style>
+    .stButton > button {
+        background-color: #007a33;
+        color: white;
+        border: none;
+        padding: 0.5em 1.2em;
+        font-size: 16px;
+        border-radius: 6px;
+    }
+
+    .stButton > button:hover {
+        background-color: #005924;
+        color: white;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 MAPA_RESPOSTA = {"Sim": 1, "Não": -1, "Depende": 0.5, "Não sei": 0}
 
