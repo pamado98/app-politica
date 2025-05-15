@@ -98,16 +98,19 @@ if st.button("Ver resultado"):
     eixo_econ = sum(MAPA_RESPOSTA[r] * peso for r, eixo, peso in respostas if eixo == "econ")
     eixo_soc = sum(MAPA_RESPOSTA[r] * peso for r, eixo, peso in respostas if eixo == "soc")
 
-    st.subheader("Resultado")
+    df = pd.read_csv("partidos.csv")
+    df['dist'] = np.sqrt((df['econ'] - eixo_econ)**2 + (df['soc'] - eixo_soc)**2)
+    partido_mais_proximo = df.loc[df['dist'].idxmin(), 'partido']
+
     pos = "Centro"
     if eixo_econ < -4: pos = "Esquerda"
     elif eixo_econ > 4: pos = "Direita"
     elif eixo_econ <= -2: pos = "Centro-Esquerda"
     elif eixo_econ >= 2: pos = "Centro-Direita"
 
-    df = pd.read_csv("partidos.csv")
-    df['dist'] = np.sqrt((df['econ'] - eixo_econ)**2 + (df['soc'] - eixo_soc)**2)
-    partido_mais_proximo = df.loc[df['dist'].idxmin(), 'partido']
+    st.subheader("Resultado")
+    st.markdown(f"**Posição política:** {pos}")
+    st.markdown(f"**Partido mais próximo:** {partido_mais_proximo}")
 
     # Carregar logótipos
     logo_cache = {}
@@ -123,14 +126,15 @@ if st.button("Ver resultado"):
     ax.text(eixo_econ + 0.2, eixo_soc, "Estás aqui!", fontsize=9)
 
     for _, row in df.iterrows():
+        econ, soc = row['econ'], row['soc']
         if row['partido'] in logo_cache:
             img = logo_cache[row['partido']]
-            imagebox = OffsetImage(img, zoom=0.12)
-            ab = AnnotationBbox(imagebox, (row['econ'], row['soc']), frameon=False)
+            imagebox = OffsetImage(img, zoom=0.1)
+            ab = AnnotationBbox(imagebox, (econ, soc), frameon=False)
             ax.add_artist(ab)
         else:
-            ax.scatter(row['econ'], row['soc'], s=80)
-            ax.text(row['econ'] + 0.2, row['soc'], row['partido'], fontsize=8)
+            ax.scatter(econ, soc, s=80)
+            ax.text(econ + 0.2, soc, row['partido'], fontsize=8)
 
     ax.axhline(0, color='gray', linestyle='--')
     ax.axvline(0, color='gray', linestyle='--')
@@ -138,9 +142,6 @@ if st.button("Ver resultado"):
     ax.set_ylabel("Liberdades Individuais (↕)")
     ax.set_title("Bússola Política")
     st.pyplot(fig)
-
-    st.write(f"Posição política: {pos}")
-    st.write(f"Partido mais próximo: {partido_mais_proximo}")
 
     st.subheader("Consulta os programas dos partidos")
     for _, row in df.iterrows():
