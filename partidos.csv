@@ -1,9 +1,9 @@
-partido,econ,soc,link
-PS, -2.5, 3.0,https://ps.pt/programa
-AD, 3.0, 1.0,https://psd.pt/programa
-IL, 6.0, 4.0,https://iniciativaliberal.pt/programa
-Chega, 5.0, 2.0,https://partidochega.pt/programa
-BE, -6.0, 6.0,https://blocodeesquerda.pt/programa
-CDU, -7.0, 4.0,https://cdu.pt/programa
-Livre, -3.0, 6.0,https://livrept.net/programa
-PAN, -2.0, 5.0,https://pan.com/programa
+partido,econ,soc,link,nome_completo
+PS,-2,3,https://ps.pt,Partido Socialista
+AD,3,1,https://psd.pt,Aliança Democrática (PSD/CDS)
+IL,6,4,https://iniciativaliberal.pt,Iniciativa Liberal
+Chega,5,2,https://partidochega.pt,Chega
+BE,-6,6,https://blocodeesquerda.pt,Bloco de Esquerda
+CDU,-7,4,https://cdu.pt,CDU (PCP/PEV)
+Livre,-3,6,https://partidolivre.pt,Livre
+PAN,-2,5,https://pan.com,Partido Pessoas-Animais-Natureza
