@@ -83,20 +83,40 @@ if st.session_state.tema_index >= len(temas):
     ax.set_ylabel("Liberdades Individuais (Autoritário <-> Libertário)")
     ax.set_title("Bússola Política – Legislativas 2025")
 
-    # Adicionar partidos
     for _, row in partidos_df.iterrows():
         ax.scatter(row["econ"], row["soc"], label=row["sigla"])
         ax.text(row["econ"] + 0.2, row["soc"], row["sigla"], fontsize=8)
 
-    # Adicionar utilizador
     ax.scatter(eixo_econ, eixo_soc, color="black", s=120)
     ax.text(eixo_econ + 0.2, eixo_soc, "Estás aqui!", fontsize=9, color="black")
 
     st.pyplot(fig)
 
     st.markdown("### Mantém-te a par! Vê os Programas Eleitorais de cada partido abaixo.")
-    for _, row in partidos_df.iterrows():
-        st.markdown(f"[{row['sigla']} - {row['partido_completo']}]({row['link']})")
+
+    programas = {
+        "PS - Partido Socialista": "PS_ProgramaEleitoral.pdf",
+        "AD (PSD+CDS) - Aliança Democrática": "AD_ProgramaEleitoral.pdf",
+        "IL - Iniciativa Liberal": "IL_ProgramaEleitoral.pdf",
+        "Chega": "CHEGA_ProgramaEleitoral.pdf",
+        "BE - Bloco de Esquerda": "BE_ProgramaEleitoral.pdf",
+        "CDU (PCP-PEV) - Coligação Democrática Unitária": "PCP_ProgramaEleitoral.pdf",
+        "Livre": "LIVRE_ProgramaEleitoral.pdf",
+        "PAN - Pessoas-Animais-Natureza": "PAN_ProgramaEleitoral.pdf"
+    }
+
+    for nome, ficheiro in programas.items():
+        caminho = f"programas/{ficheiro}"
+        try:
+            with open(caminho, "rb"):
+                with st.expander(f"📘 {nome}"):
+                    st.markdown(
+                        f'<iframe src="{caminho}" width="100%" height="700px" style="border:none;"></iframe>',
+                        unsafe_allow_html=True
+                    )
+        except FileNotFoundError:
+            st.warning(f"Ficheiro não encontrado para: {nome}")
 
     if st.button("Vê aqui a tua tendência política em cada um dos temas!"):
         st.info("Funcionalidade em desenvolvimento: comparação por tema.")
+        
