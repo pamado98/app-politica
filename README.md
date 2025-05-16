@@ -4,12 +4,16 @@ Esta aplicação interativa foi criada com o objetivo de ajudar os cidadãos a r
 
 ## 🧭 Como funciona?
 
-Através de 30 perguntas simples, organizadas por tema (como Educação, Habitação, Justiça, etc.), a aplicação calcula a tua posição numa bússola política com dois eixos:
+A aplicação apresenta 30 perguntas (3 por tema), com 4 opções de resposta: Sim, Não, Depende e Não sei.
+Cada resposta tem um peso associado que permite calcular a tua orientação política.
 
-- **Económico**: Esquerda ↔ Direita
-- **Liberdades Individuais**: Autoritário ↕ Libertário
+No final, em vez de uma bússola política, é apresentada uma linha ideológica horizontal, onde:
 
-No final, é gerado um gráfico com a tua posição e a dos principais partidos portugueses. Também é possível consultar os programas eleitorais dos partidos diretamente a partir da aplicação.
+Os principais partidos portugueses estão dispostos de forma equidistante, da Esquerda para a Direita.
+
+A tua posição aparece assinalada com um marcador personalizado “Estás aqui!”.
+
+Esta visualização simples permite perceber rapidamente com que espectro político te identificas mais, com base nas tuas respostas.
 
 ## 📌 Importante
 
