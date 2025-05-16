@@ -1,117 +1,41 @@
+
 import streamlit as st
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+import os
 
-st.set_page_config(page_title="Bússola Política – Legislativas 2025", layout="centered")
+st.set_page_config(page_title="Bússola Política – Legislativas 2025", layout="wide")
 
-# Estilo visual
-st.markdown("""
-<style>
-.stApp {
-    background-color: #ffffff;
-}
-.stButton>button {
-    background-color: #007a33;
-    color: white;
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-}
-.stButton>button:hover {
-    background-color: #005924;
-}
-</style>
-""", unsafe_allow_html=True)
+st.title("Bússola Política – Legislativas 2025")
+st.markdown("Esta é a tua posição ideológica com base nas tuas respostas.")
 
-# Carregar perguntas e partidos
-perguntas_df = pd.read_csv("perguntas.csv")
-temas = perguntas_df["tema"].unique().tolist()
-partidos_df = pd.read_csv("partidos.csv")
+# Limites e posição do utilizador (exemplo entre PAN e PS)
+pos_utilizador = 3.4  # Pode ser qualquer valor entre 0 e 7
 
-# Inicializar estados
-if "tema_index" not in st.session_state:
-    st.session_state.tema_index = 0
-if "respostas" not in st.session_state:
-    st.session_state.respostas = []
+# Limitar a posição aos extremos
+pos_utilizador = max(0, min(7, pos_utilizador))
 
-MAPA_RESPOSTA = {"Sim": 1, "Não": -1, "Depende": 0.5, "Não sei": 0}
+# Lista dos partidos na ordem ideológica
+partidos = ["cdu", "be", "livre", "pan", "ps", "ad", "il", "chega"]
+nomes = ["CDU", "BE", "LIVRE", "PAN", "PS", "AD", "IL", "CHEGA"]
+caminho_logos = "logos"
 
-# Página inicial
-if st.session_state.tema_index == 0 and not st.session_state.respostas:
-    st.title("Bússola Política – Legislativas 2025")
-    st.markdown("""
-Esta aplicação foi desenvolvida com base nos programas eleitorais das principais forças políticas candidatas às Legislativas de 2025.  
-Através de um conjunto de perguntas divididas por temas, poderás avaliar a tua tendência política de forma simples e visual.
+# Gráfico
+fig, ax = plt.subplots(figsize=(10, 2))
+ax.set_xlim(-0.5, 7.5)
+ax.set_ylim(-1, 1)
+ax.axis("off")
 
-No final, um gráfico do tipo *bússola política* vai mostrar-te a tua posição ideológica, com base nas tuas respostas.
-""")
-    if st.button("Vamos começar!"):
-        st.session_state.tema_index += 1
-        st.rerun()
-    st.stop()
+# Plotar os logótipos
+for i, partido in enumerate(partidos):
+    logo_path = os.path.join(caminho_logos, f"{partido}.png")
+    if os.path.exists(logo_path):
+        img = mpimg.imread(logo_path)
+        ax.imshow(img, extent=(i-0.4, i+0.4, -0.4, 0.4), aspect="auto", zorder=2)
+    ax.text(i, -0.8, nomes[i], ha="center", fontsize=10)
 
-# Mostrar perguntas do tema atual
-if st.session_state.tema_index < len(temas):
-    tema_atual = temas[st.session_state.tema_index]
-    st.title(f"Tema: {tema_atual}")
+# Adicionar posição do utilizador
+ax.plot(pos_utilizador, 0.6, "o", color="black", markersize=12, zorder=3)
+ax.text(pos_utilizador, 0.85, "Estás aqui!", ha="center", fontsize=10)
 
-    perguntas_tema = perguntas_df[perguntas_df["tema"] == tema_atual]
-    for _, row in perguntas_tema.iterrows():
-        resposta = st.radio(row["pergunta"], ["Sim", "Não", "Depende", "Não sei"], key=row["pergunta"])
-        st.session_state.respostas.append((resposta, row["eixo"], row["peso"]))
-
-    if st.button(f"Avançar para {temas[st.session_state.tema_index + 1]}" if st.session_state.tema_index < len(temas) - 1 else "Ver Resultados"):
-        st.session_state.tema_index += 1
-        st.rerun()
-
-# Página final com gráfico
-if st.session_state.tema_index >= len(temas):
-    eixo_econ = sum(MAPA_RESPOSTA[r] * float(peso) for r, eixo, peso in st.session_state.respostas if eixo == "econ")
-    eixo_soc = sum(MAPA_RESPOSTA[r] * float(peso) for r, eixo, peso in st.session_state.respostas if eixo == "soc")
-
-    st.title("O teu resultado")
-    fig, ax = plt.subplots(figsize=(6, 6))
-    ax.axhline(0, color='gray', linestyle='--')
-    ax.axvline(0, color='gray', linestyle='--')
-    ax.set_xlabel("Economia (Esquerda <-> Direita)")
-    ax.set_ylabel("Liberdades Individuais (Autoritário <-> Libertário)")
-    ax.set_title("Bússola Política – Legislativas 2025")
-
-    for _, row in partidos_df.iterrows():
-        ax.scatter(row["econ"], row["soc"], label=row["sigla"])
-        ax.text(row["econ"] + 0.2, row["soc"], row["sigla"], fontsize=8)
-
-    ax.scatter(eixo_econ, eixo_soc, color="black", s=120)
-    ax.text(eixo_econ + 0.2, eixo_soc, "Estás aqui!", fontsize=9, color="black")
-
-    st.pyplot(fig)
-
-    st.markdown("### Mantém-te a par! Vê os Programas Eleitorais de cada partido abaixo.")
-
-    programas = {
-        "PS - Partido Socialista": "PS_ProgramaEleitoral.pdf",
-        "AD (PSD+CDS) - Aliança Democrática": "AD_ProgramaEleitoral.pdf",
-        "IL - Iniciativa Liberal": "IL_ProgramaEleitoral.pdf",
-        "Chega": "CHEGA_ProgramaEleitoral.pdf",
-        "BE - Bloco de Esquerda": "BE_ProgramaEleitoral.pdf",
-        "CDU (PCP-PEV) - Coligação Democrática Unitária": "PCP_ProgramaEleitoral.pdf",
-        "Livre": "LIVRE_ProgramaEleitoral.pdf",
-        "PAN - Pessoas-Animais-Natureza": "PAN_ProgramaEleitoral.pdf"
-    }
-
-    for nome, ficheiro in programas.items():
-        caminho = f"programas/{ficheiro}"
-        try:
-            with open(caminho, "rb"):
-                with st.expander(f"📘 {nome}"):
-                    st.markdown(
-                        f'<iframe src="{caminho}" width="100%" height="700px" style="border:none;"></iframe>',
-                        unsafe_allow_html=True
-                    )
-        except FileNotFoundError:
-            st.warning(f"Ficheiro não encontrado para: {nome}")
-
-    if st.button("Vê aqui a tua tendência política em cada um dos temas!"):
-        st.info("Funcionalidade em desenvolvimento: comparação por tema.")
+st.pyplot(fig)
